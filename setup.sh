@@ -56,10 +56,10 @@ function main() {
     echo " "
 
     for pkg in "${APACKG[@]}";do
-        if yum -q list installed "$pkg" > /dev/null 2>&1; then
+        if apt -q list installed "$pkg" > /dev/null 2>&1; then
             echo -e "$pkg is already installed"
         else
-            yum install "$pkg" -y && echo "Successfully installed $pkg"
+            apt install "$pkg" -y && echo "Successfully installed $pkg"
         fi
     done
 
