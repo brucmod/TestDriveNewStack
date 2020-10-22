@@ -110,7 +110,7 @@ function main() {
 
 
   #Let's run everything
-  installPackages
+  #installPackages
   installAnsible
   echo " =============================== "
   echo " "
