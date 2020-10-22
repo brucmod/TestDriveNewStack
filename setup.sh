@@ -8,6 +8,17 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+echo "#####################################"
+
+#remove password requirement for sudo
+echo '%sudo ALL=(ALL) NOPASSWD:ALL' | sudo tee -a /etc/sudoers
+
+sudo apt-get install open-vm-tools-desktop --assume-yes
+
+#install PIP3
+sudo apt install python3-pip --assume-yes
+pip3 install jmespath 
+
 function main() {
   #statements
 
@@ -41,27 +52,27 @@ function main() {
   echo "#############################################################"
   echo " "
   echo " "
-  function installPackages() {
+  #function installPackages() {
     #install all required Linux packages
-    APACKG=( epel-release
-             python3 python3-pip
-             centos-release-ansible-29
-             ansible
-             vim
-             python2-jmespath )
+   # APACKG=( epel-release
+    #         python3 python3-pip
+    #         centos-release-ansible-29
+     #        ansible
+      #       vim
+       #      python2-jmespath )
 
     echo "##########################################"
     echo "####  Installing Python3 and Ansible  ####"
     echo "##########################################"
     echo " "
 
-    for pkg in "${APACKG[@]}";do
-        if apt -q list installed "$pkg" > /dev/null 2>&1; then
-            echo -e "$pkg is already installed"
-        else
-            apt install "$pkg" -y && echo "Successfully installed $pkg"
-        fi
-    done
+   # for pkg in "${APACKG[@]}";do
+    #    if yum -q list installed "$pkg" > /dev/null 2>&1; then
+     #       echo -e "$pkg is already installed"
+      #  else
+       #     yum install "$pkg" -y && echo "Successfully installed $pkg"
+        #fi
+   #done
 
   #You don't need to use these, but they can help with less typing.
 
